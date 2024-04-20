@@ -2,20 +2,25 @@ const mongoose = require('mongoose')
 
 const StudentSchema = new mongoose.Schema({
   name: {
-    Type: String,
+    type: String,
     required: [true, "Please provide name"],
-    minimumLength: 3,
-    maxLength: 50,
+    minimumlength: 3,
+    maxlength: 50,
   },
   email: {
-    Type: String,
+    type: String,
     required: [true, "Please provide email"],
+    match: [
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      "Invalid email address",
+    ],
+
     unique: true,
   },
   password: {
-    Type: String,
+    type: String,
     required: [true, "Please provide password"],
-    minimumLength: 3,
+    minimumlength: 3,
   },
 });
 
