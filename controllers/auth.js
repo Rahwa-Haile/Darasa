@@ -26,6 +26,8 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!password && !email) {
+      console.log('Please enter name and email')
+      
     }
     const student = await Student.findOne({ email });
     let isMatch = false;
