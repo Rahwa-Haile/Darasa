@@ -7,7 +7,7 @@ const { MIMEType } = require("util");
             cb(null, 'images')
         },
         filename: (req, file, cb) => {
-            cb(null, Date.now() + path.extname(file.originalname))
+            cb(null, Date.now() + file.originalname)
         }
     })
 
