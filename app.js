@@ -5,6 +5,8 @@ const connectDB=require('./db/connectDB')
 const authRouter=require('./routes/auth')
 
 app.use(express.json())
+app.use(express.urlencoded())
+app.use(express.static('./images'))
 
 app.use('/api/v1/students', authRouter)
 
