@@ -52,4 +52,8 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const userData = (req, res)=>{
+    
+}
+
+module.exports = { register, login, userData };
