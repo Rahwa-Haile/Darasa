@@ -3,9 +3,11 @@ const mongoose = require('mongoose')
 const UserDataSchema = new mongoose.Schema({
   avatar: {
     type: String,
+    default: 'none'
   },
   coverPhoto: {
     type: String,
+    default: 'none'
   },
   location: {
     type: String,
@@ -69,20 +71,45 @@ const UserDataSchema = new mongoose.Schema({
   title: {
     type: String,
   },
-  expertiseAreas: {
+  expertiseArea: {
     type: String,
     enum: [
-    "Technology", "Finance", "Healthcare", "Education", "Business", "Engineering",
-    "Marketing", "Science", "Art", "Design", "Law", "Hospitality", "Media",
-    "Entertainment", "Sports", "Environment", "Social Sciences", "Politics", "Culinary",
-    "Fashion", "Automotive", "Agriculture", "Architecture", "Music"
-]
+      "Technology",
+      "Finance",
+      "Healthcare",
+      "Education",
+      "Business",
+      "Engineering",
+      "Marketing",
+      "Science",
+      "Art",
+      "Design",
+      "Law",
+      "Hospitality",
+      "Media",
+      "Entertainment",
+      "Sports",
+      "Environment",
+      "Social Sciences",
+      "Politics",
+      "Culinary",
+      "Fashion",
+      "Automotive",
+      "Agriculture",
+      "Architecture",
+      "Music",
+    ],
   },
-  Bio: {
-    type: String
-  },
-  LinkedInURL:{
+  bio: {
     type: String,
-    match: ['^[a-zA-Z][a-zA-Z0-9.-]{4,28}$', 'provide valid linkedIn url']
-    }
+  },
+  LinkedInURL: {
+    type: String,
+    match: [
+      /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/,
+      "provide valid linkedIn url",
+    ],
+  },
 });
+
+module.exports = mongoose.model('UserData', UserDataSchema)
