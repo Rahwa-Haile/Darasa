@@ -3,10 +3,15 @@ const app = express()
 require('dotenv').config()
 const connectDB=require('./db/connectDB')
 const authRouter=require('./routes/auth')
+const courseRouter=require('./routes/course')
+
+app.use(express.urlencoded({ extended: false })) //This parses the data and add it to the body.
 
 app.use(express.json())
 
-app.use('/api/v1/students', authRouter)
+
+app.use('/api/v1/students', courseRouter)
+
 
 const start =  ()=>{
     connectDB(process.env.MONGO_URI)
