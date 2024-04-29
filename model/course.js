@@ -70,15 +70,15 @@ const courseSchema = new mongoose.Schema({
     },
   },
   targetStudents: {
-        type: String,
-        required: [true, 'Please provide your target students']
-    },
+    type: String,
+    required: [true, "Please provide your target students"],
+  },
   courseImage: {
-    type: String
+    type: String,
   },
   promoVideo: {
-    type: String
-  }
+    type: String,
+  },
 });
 
-module.exports = mongoose.model('Course', courseSchema)
+module.exports = mongoose.model("Course", courseSchema);

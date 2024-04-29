@@ -5,13 +5,15 @@ const connectDB=require('./db/connectDB')
 const authRouter=require('./routes/auth')
 const courseRouter=require('./routes/course')
 const learningGroupRouter=require('./routes/learningGroup')
+const storyRouter = require('./routes/story')
 
 app.use(express.urlencoded({ extended: false })) //This parses the data and add it to the body.
 
 app.use(express.json())
 
 
-app.use('/api/v1/students', authRouter, courseRouter, learningGroupRouter)
+app.use('/api/v1/students', authRouter, courseRouter, learningGroupRouter, storyRouter)
+
 
 
 const start =  ()=>{
