@@ -1,13 +1,13 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
 const UserDataSchema = new mongoose.Schema({
   avatar: {
     type: String,
-    default: 'none'
+    default: "none",
   },
   coverPhoto: {
     type: String,
-    default: 'none'
+    default: "none",
   },
   location: {
     type: String,
@@ -72,33 +72,35 @@ const UserDataSchema = new mongoose.Schema({
     type: String,
   },
   expertiseArea: {
-    type: String,
-    enum: [
-      "Technology",
-      "Finance",
-      "Healthcare",
-      "Education",
-      "Business",
-      "Engineering",
-      "Marketing",
-      "Science",
-      "Art",
-      "Design",
-      "Law",
-      "Hospitality",
-      "Media",
-      "Entertainment",
-      "Sports",
-      "Environment",
-      "Social Sciences",
-      "Politics",
-      "Culinary",
-      "Fashion",
-      "Automotive",
-      "Agriculture",
-      "Architecture",
-      "Music",
-    ],
+    type: Array,
+    items: {
+      enum: [
+        "Technology",
+        "Finance",
+        "Healthcare",
+        "Education",
+        "Business",
+        "Engineering",
+        "Marketing",
+        "Science",
+        "Art",
+        "Design",
+        "Law",
+        "Hospitality",
+        "Media",
+        "Entertainment",
+        "Sports",
+        "Environment",
+        "Social Sciences",
+        "Politics",
+        "Culinary",
+        "Fashion",
+        "Automotive",
+        "Agriculture",
+        "Architecture",
+        "Music",
+      ],
+    },
   },
   bio: {
     type: String,
@@ -112,4 +114,4 @@ const UserDataSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('UserData', UserDataSchema)
+module.exports = mongoose.model("UserData", UserDataSchema);
