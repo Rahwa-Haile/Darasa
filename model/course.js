@@ -79,6 +79,6 @@ const courseSchema = new mongoose.Schema({
   promoVideo: {
     type: String,
   },
-});
+},{timestamps: true});
 
 module.exports = mongoose.model("Course", courseSchema);

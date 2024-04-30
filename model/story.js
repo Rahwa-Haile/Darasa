@@ -10,7 +10,7 @@ const StorySchema = new mongoose.Schema({
         type: Array,
         required: [true, 'story cannot be empty']
     }
-},{timeStamps: true})
+},{timestamps: true})
 
 
 module.exports = mongoose.model('Story', StorySchema)

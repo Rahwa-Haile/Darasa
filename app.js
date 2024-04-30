@@ -7,13 +7,14 @@ const courseRouter=require('./routes/course')
 const learningGroupRouter=require('./routes/learningGroup')
 const storyRouter = require('./routes/story')
 const notificationRouter = require('./routes/notification')
+const commentRouter = require('./routes/comment')
 
 app.use(express.urlencoded({ extended: false })) //This parses the data and add it to the body.
 
 app.use(express.json())
 
 
-app.use('/api/v1/students', authRouter, courseRouter, learningGroupRouter, storyRouter, notificationRouter)
+app.use('/api/v1/students', authRouter, courseRouter, learningGroupRouter, storyRouter, notificationRouter, commentRouter)
 
 
 
