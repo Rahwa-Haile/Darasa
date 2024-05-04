@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = require('./user')
 
 const courseSchema = new mongoose.Schema({
   courseTitle: {
@@ -79,6 +80,11 @@ const courseSchema = new mongoose.Schema({
   promoVideo: {
     type: String,
   },
+  createdBy: {
+    type: mongoose.Types.ObjectId,
+    ref: User,
+    required: true
+  }
 },{timestamps: true});
 
 module.exports = mongoose.model("Course", courseSchema);
