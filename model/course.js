@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require('./user')
+const User = require("./user");
 
 const courseSchema = new mongoose.Schema(
   {
@@ -114,6 +114,28 @@ const courseSchema = new mongoose.Schema(
             type: String,
             enum: ["PM", "AM"],
             // default: "PM",
+          },
+          enrolled: {
+            students: {
+              type: Array,
+              items: {
+                type: Object,
+                properties: {
+                  studentId: {
+                    type: mongoose.Types.ObjectId,
+                    ref: User,
+                  },
+                  status: {
+                    enum: ['pending', 'rejected', 'accepted'],
+                    default: 'pending'
+                  },
+                  rating: {
+                    type: Number,
+                    default: 0
+                  }
+                },
+              },
+            },
           },
         },
       },
