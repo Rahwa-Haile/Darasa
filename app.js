@@ -12,6 +12,7 @@ const followRouter = require('./routes/follow')
 const bookmarkRouter = require('./routes/bookmark')
 const cartRouter = require('./routes/cart')
 
+
 app.use(express.urlencoded({ extended: false })) //This parses the data and add it to the body.
 
 app.use(express.json())
