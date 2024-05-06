@@ -10,13 +10,14 @@ const notificationRouter = require('./routes/notification')
 const commentRouter = require('./routes/comment')
 const followRouter = require('./routes/follow')
 const bookmarkRouter = require('./routes/bookmark')
+const cartRouter = require('./routes/cart')
 
 app.use(express.urlencoded({ extended: false })) //This parses the data and add it to the body.
 
 app.use(express.json())
 
 
-app.use('/api/v1/students', authRouter, courseRouter, learningGroupRouter, storyRouter, notificationRouter, commentRouter, followRouter, bookmarkRouter)
+app.use('/api/v1/students', authRouter, courseRouter, learningGroupRouter, storyRouter, notificationRouter, commentRouter, followRouter, bookmarkRouter, cartRouter)
 
 
 
