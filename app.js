@@ -22,8 +22,8 @@ app.use('/api/v1/students', authRouter, courseRouter, learningGroupRouter, story
 
 
 
-const start =  ()=>{
-    connectDB(process.env.MONGO_URI)
+const start =  async ()=>{
+    await connectDB(process.env.MONGO_URI)
     app.listen(5000, ()=>{
         console.log('server is listening at port 5000')
     })
