@@ -19,13 +19,13 @@ const uploadData = async () => {
   try {
     // await connectDB(process.env.MONGO_URI)
     const fields = await formattedFields();
-    console.log(fields);
+    // console.log(fields);
     const client = await algoliasearch(
       "3AVD8CQXQI",
       "1f48791e02c0cf984d71abdf9313cc61"
     );
     console.log("authenticated client");
-    const index = await client.initIndex("test_index");
+    const index = await client.initIndex("courses");
     const record = fields;
    
     
@@ -36,7 +36,7 @@ const uploadData = async () => {
       .saveObjects(fields, { autoGenerateObjectIDIfNotExist: true })
       .wait();
     console.log("success");
-      index.search("course").then(({ hits }) => console.log(hits[0]));
+      index.search("development").then(({ hits }) => console.log(hits));
   } catch (error) {
     console.log(error);
   }

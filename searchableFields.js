@@ -7,7 +7,7 @@ const formattedFields = async () => {
     await connectDB(process.env.MONGO_URI);
     const courses = await Course.find({});
     let id = 1;
-    console.log(courses);
+    // console.log(courses);
     const fields = courses.map((course) => {
       return {
         objectID: id++,
@@ -16,7 +16,7 @@ const formattedFields = async () => {
         courseDescription: course.courseDescription,
       };
     });
-    console.log(fields);
+    // console.log(fields);
   
     return fields;
   } catch (error) {
