@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
+const User = require('./user')
 
 const UserDataSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Types.ObjectId,
+    ref: User,
+    required: true
+  },
   avatar: {
     type: String,
     default: "none",
@@ -111,7 +117,8 @@ const UserDataSchema = new mongoose.Schema({
       /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9-]+\/?$/,
       "provide valid linkedIn url",
     ],
-  },
+  }
+  
 });
 
 module.exports = mongoose.model("UserData", UserDataSchema);

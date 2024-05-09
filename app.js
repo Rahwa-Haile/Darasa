@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false })) //This parses the data and add 
 app.use(express.json())
 
 
-app.use('/api/v1/students/course', courseRouter, bookmarkRouter, cartRouter)
+app.use('/api/v1/students', courseRouter, bookmarkRouter, cartRouter, authRouter)
 
 
 

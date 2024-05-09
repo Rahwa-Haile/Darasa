@@ -4,11 +4,11 @@ const {createCourse, getAllCourses, getCourse, updateCourse, deleteCourse} = req
 const upload = require("../middlewares/upload-middleware");
 
 
-router.post('/', upload.fields([{name: 'courseImage', maxCount: 1}, {name: 'promoVideo', maxCount: 1}]), createCourse)
-router.get('/', getAllCourses)
-router.get('/:id', getCourse)
-router.patch('/:id', updateCourse)
-router.delete('/:id', deleteCourse)
+router.post('/course', upload.fields([{name: 'courseImage', maxCount: 1}, {name: 'promoVideo', maxCount: 1}]), createCourse)
+router.get('/course', getAllCourses)
+router.get('/course:id', getCourse)
+router.patch('/course:id', updateCourse)
+router.delete('/course:id', deleteCourse)
 
 
 

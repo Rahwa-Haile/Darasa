@@ -8,11 +8,11 @@ const CartSchema = new mongoose.Schema({
         ref: User,
         required: true
     },
-    courseId : {
+    courseIdList : [{
         type: mongoose.Types.ObjectId,
         ref: Course,
         required: true
-    }
+    }]
 }, {timestamps: true})
 
 module.exports = mongoose.model('cart', CartSchema)
