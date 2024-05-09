@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const createBookmark = require('../controllers/bookmark')
+const {addToBookmark, viewBookmark, removeFromBookmark} = require('../controllers/bookmark')
 
-router.post('/bookmark', createBookmark)
+router.post('/bookmark/:id', addToBookmark)
+router.get('/bookmark', viewBookmark)
+router.delete('/bookmark/:id', removeFromBookmark)
 
 module.exports = router
