@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const createFollow = require('../controllers/follow')
+const {addToFollow, viewFollow, removeFromFollow} = require('../controllers/follow')
 
-router.post('/follow', createFollow)
+router.post('/follow/:id', addToFollow)
+router.get('/follow', viewFollow)
+router.delete('/follow/:id', removeFromFollow)
 
-module.exports = router
+module.exports = router 
