@@ -28,9 +28,15 @@ const CommentSchema = new mongoose.Schema(
       required: [true, "please provide the number of dislikes"],
       default: 0,
     },
+    referenceTo: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Comment',
+      // required: [true, 'Clarify whether this is a reply'],
+      default: null
+    }
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("comment", CommentSchema);
+module.exports = mongoose.model("Comment", CommentSchema);
 
