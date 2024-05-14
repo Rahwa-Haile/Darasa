@@ -28,11 +28,15 @@ const CommentSchema = new mongoose.Schema(
       required: [true, "please provide the number of dislikes"],
       default: 0,
     },
-    referenceTo: {
+    replyTo: {
       type: mongoose.Types.ObjectId,
       ref: 'Comment',
       // required: [true, 'Clarify whether this is a reply'],
       default: null
+    },
+    numberOfReplies: {
+      type: Number,
+      default: 0
     }
   },
   { timestamps: true }
