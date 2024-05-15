@@ -18,7 +18,7 @@ app.use(express.urlencoded({ extended: false })) //This parses the data and add 
 app.use(express.json())
 
 
-app.use('/api/v1/students', courseRouter, bookmarkRouter, cartRouter, authRouter, followRouter, commentRouter, learningGroupRouter)
+app.use('/api/v1/students', courseRouter, bookmarkRouter, cartRouter, authRouter, followRouter, commentRouter, learningGroupRouter, notificationRouter)
 
 const start =  async ()=>{
     await connectDB(process.env.MONGO_URI)
