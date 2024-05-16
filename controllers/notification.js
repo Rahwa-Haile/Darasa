@@ -48,7 +48,7 @@ const deleteNotification = async (req, res) => {
     if(!notification){
         res.status(404).json({msg: 'notification not found'})
     }
-    res.status(200).json({ notification });
+    res.status(200).json({ msg: 'notification deletion successful' });
   } catch (error) {
     console.log(error);
   }
