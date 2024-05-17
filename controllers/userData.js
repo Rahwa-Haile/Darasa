@@ -2,12 +2,12 @@ const UserData = require("../model/userData");
 
 const createUserData = async (req, res) => {
   try {
-    const data = {...req.body}
-    if(req.files['avatar']){
-        data.avatar = req.files['avatar'][0].filename
+    const data = { ...req.body };
+    if (req.files["avatar"]) {
+      data.avatar = req.files["avatar"][0].filename;
     }
-    if(req.files['coverPhoto']){
-        data.coverPhoto = req.files['coverPhoto'][0].filename
+    if (req.files["coverPhoto"]) {
+      data.coverPhoto = req.files["coverPhoto"][0].filename;
     }
     const userData = await UserData.create(data);
     res.status(201).json({ userData });
@@ -25,10 +25,10 @@ const getAllUserDatas = async (req, res) => {
 };
 const getUserData = async (req, res) => {
   try {
-    const userId = req.params.id
-    const userData = await UserData.findOne({_id: userId});
-    if(!userData){
-        res.status(404).json({msg: "userData not found"})
+    const userId = req.params.id;
+    const userData = await UserData.findOne({ _id: userId });
+    if (!userData) {
+      res.status(404).json({ msg: "userData not found" });
     }
     res.status(201).json({ userData });
   } catch (error) {
@@ -37,18 +37,22 @@ const getUserData = async (req, res) => {
 };
 const updateUserData = async (req, res) => {
   try {
-    const userDataId = req.params.id 
-    const data = {...req.body}
-    
-    if(req.files['avatar']){
-        data.avatar = req.files['avatar'][0].filename
+    const userDataId = req.params.id;
+    const data = { ...req.body };
+
+    if (req.files["avatar"]) {
+      data.avatar = req.files["avatar"][0].filename;
     }
-    if(req.files['coverPhoto']){
-        data.coverPhoto = req.files['coverPhoto'][0].filename
+    if (req.files["coverPhoto"]) {
+      data.coverPhoto = req.files["coverPhoto"][0].filename;
     }
-    const userData = await UserData.findOneAndUpdate({_id: userDataId}, data, {new: true, runValidators: true});
-    if(!userData){
-        res.status(404).json({msg: 'user data not found'})
+    const userData = await UserData.findOneAndUpdate(
+      { _id: userDataId },
+      data,
+      { new: true, runValidators: true }
+    );
+    if (!userData) {
+      res.status(404).json({ msg: "user data not found" });
     }
     res.status(200).json({ userData });
   } catch (error) {
@@ -57,17 +61,23 @@ const updateUserData = async (req, res) => {
 };
 const deleteUserData = async (req, res) => {
   try {
-    const userDataId = req.params.id
-    const userData = await UserData.findOneAndDelete({_id: userDataId});
-    if(!userData){
-        res.status(404).json({msg: 'user data not found'})
+    const userDataId = req.params.id;
+    const userData = await UserData.findOneAndDelete({ _id: userDataId });
+    if (!userData) {
+      res.status(404).json({ msg: "user data not found" });
     }
-    res.status(201).json({ msg: `the data of user ${userData._id} has been deleted` });
+    res
+      .status(201)
+      .json({ msg: `the data of user ${userData._id} has been deleted` });
   } catch (error) {
     console.log(error);
   }
 };
 
-
-
-module.exports = {createUserData, getAllUserDatas, getUserData, updateUserData, deleteUserData}
+module.exports = {
+  createUserData,
+  getAllUserDatas,
+  getUserData,
+  updateUserData,
+  deleteUserData,
+};

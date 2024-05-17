@@ -20,7 +20,9 @@ const addToBookmark = async (req, res) => {
 const viewBookmark = async (req, res) => {
   try {
     const studentId = req.body.bookmarkedBy;
-    const bookmark = await Bookmark.find({ bookmarkedBy: studentId }).populate('courseId');
+    const bookmark = await Bookmark.find({ bookmarkedBy: studentId }).populate(
+      "courseId"
+    );
     res.status(200).json({ bookmark });
   } catch (error) {
     console.log(error);
@@ -28,12 +30,15 @@ const viewBookmark = async (req, res) => {
 };
 const removeFromBookmark = async (req, res) => {
   try {
-    const courseId = req.params.id
-    const studentId = req.body.bookmarkedBy
-    let bookmark = await Bookmark.findOneAndDelete({bookmarkedBy: studentId, courseId});
+    const courseId = req.params.id;
+    const studentId = req.body.bookmarkedBy;
+    let bookmark = await Bookmark.findOneAndDelete({
+      bookmarkedBy: studentId,
+      courseId,
+    });
     res.status(200).json({ msg: "removed from bookmark" });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
 

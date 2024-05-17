@@ -2,14 +2,14 @@ const LearningGroup = require("../model/LearningGroup");
 
 const createLearningGroup = async (req, res) => {
   try {
-    const data = req.body
+    const data = req.body;
 
-    if(req.files.avatar){
-      data.avatar = req.files.avatar[0].filename
+    if (req.files.avatar) {
+      data.avatar = req.files.avatar[0].filename;
     }
-     if (req.files.coverPhoto) {
-       data.coverPhoto = req.files.coverPhoto[0].filename;
-     }
+    if (req.files.coverPhoto) {
+      data.coverPhoto = req.files.coverPhoto[0].filename;
+    }
     const learningGroup = await LearningGroup.create(data);
 
     res.status(201).json({ learningGroup });
@@ -28,17 +28,17 @@ const getAllLearningGroups = async (req, res) => {
 };
 
 const getLearningGroup = async (req, res) => {
-  try{
-    const learningGroupId = req.params.id 
-    const learningGroup = await LearningGroup.findOne({_id: learningGroupId})
-    if(!learningGroup){
-      res.status(404).json({msg: "learning group not found"})
+  try {
+    const learningGroupId = req.params.id;
+    const learningGroup = await LearningGroup.findOne({ _id: learningGroupId });
+    if (!learningGroup) {
+      res.status(404).json({ msg: "learning group not found" });
     }
-    res.status(200).json({learningGroup})
-  }catch(error){
-    console.log(error)
+    res.status(200).json({ learningGroup });
+  } catch (error) {
+    console.log(error);
   }
-}
+};
 
 const updateLearningGroup = async (req, res) => {
   try {
@@ -71,8 +71,8 @@ const deleteLearningGroup = async (req, res) => {
     const learningGroup = await LearningGroup.findOneAndDelete({
       _id: learningGroupId,
     });
-    if(!learningGroup){
-      res.status(404).json({msg: 'learning group is not found'})
+    if (!learningGroup) {
+      res.status(404).json({ msg: "learning group is not found" });
     }
     res.status(200).json({ msg: "learning group deletion is successful" });
   } catch (error) {
@@ -84,4 +84,10 @@ const deleteLearningGroup = async (req, res) => {
 //you could take the course titles as search keywords and recommed sth
 //based on user survey input
 
-module.exports = {createLearningGroup, getAllLearningGroups, getLearningGroup, updateLearningGroup, deleteLearningGroup}
+module.exports = {
+  createLearningGroup,
+  getAllLearningGroups,
+  getLearningGroup,
+  updateLearningGroup,
+  deleteLearningGroup,
+};
