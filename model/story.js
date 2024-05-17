@@ -4,7 +4,8 @@ const User = require('./user')
 const StorySchema = new mongoose.Schema({
     createdBy: {
         type: mongoose.Types.ObjectId,
-        ref: User
+        ref: User,
+        required: true
     },
     story: {
         type: Array,

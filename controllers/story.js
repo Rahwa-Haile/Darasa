@@ -2,9 +2,15 @@ const Story = require("../model/story");
 
 const createStory = async (req, res) => {
   try {
-    const storyList = req.files.map((story) => {
-      return story.filename;
-    });
+    
+    let storyList = [];
+    if (req.files) {
+      storyList = req.files.map((story) => {
+        return story.filename;
+      });
+    }
+
+    
     const story = await Story.create({ ...req.body, story: storyList });
     res.status(201).json({ story });
   } catch (error) {
@@ -34,10 +40,16 @@ const getStory = async (req, res) => {
 const updateStory = async (req, res) => {
   try {
     const storyId = req.params.id;
-
-    const story = await Story.findOneAndUpdate({ _id: storyId }, req.body, {
+    let storyList = []
+    if(req.files){
+      storyList = req.files.map((story) => {
+        return story.filename
+      })
+    }
+    const story = await Story.findOneAndUpdate({ _id: storyId }, {...req.body, story:storyList}, {
       new: true,
       runValidators: true,
+      overwrite: true,
     });
     if (!story) {
       res.status(404).json({ msg: "story not found" });
@@ -49,12 +61,12 @@ const updateStory = async (req, res) => {
 };
 const deleteStory = async (req, res) => {
   try {
-    const storyId = req.params.id
-    const story = await Story.findOneAndDelete({_id: storyId});
-    if(!story){
-        res.status(404).json({msg: 'story not found'})
+    const storyId = req.params.id;
+    const story = await Story.findOneAndDelete({ _id: storyId });
+    if (!story) {
+      res.status(404).json({ msg: "story not found" });
     }
-    res.status(201).json({ msg: 'story deletion successful' });
+    res.status(201).json({ msg: "story deletion successful" });
   } catch (error) {
     console.log(error);
   }

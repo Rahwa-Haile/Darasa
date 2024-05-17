@@ -6,7 +6,7 @@ const upload = require('../middlewares/upload-middleware')
 router.post('/story', upload.array('story', 4), createStory)
 router.get('/story', getAllStories)
 router.get('/story/:id', getStory)
-router.patch('/story/:id', updateStory)
+router.put('/story/:id', upload.array('story', 4),updateStory)
 router.delete('/story/:id', deleteStory)
 
 module.exports = router 

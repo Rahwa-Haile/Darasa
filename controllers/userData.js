@@ -39,6 +39,7 @@ const updateUserData = async (req, res) => {
   try {
     const userDataId = req.params.id 
     const data = {...req.body}
+    
     if(req.files['avatar']){
         data.avatar = req.files['avatar'][0].filename
     }
