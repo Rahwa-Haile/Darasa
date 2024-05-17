@@ -43,7 +43,7 @@ const updateNotification = async (req, res) => {
 };
 const deleteNotification = async (req, res) => {
   try {
-    const notifcationId = req.params.id
+    const notificationId = req.params.id
     const notification = await Notification.findOneAndDelete({_id: notificationId});
     if(!notification){
         res.status(404).json({msg: 'notification not found'})
