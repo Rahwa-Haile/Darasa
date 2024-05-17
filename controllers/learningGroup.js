@@ -2,12 +2,15 @@ const LearningGroup = require("../model/LearningGroup");
 
 const createLearningGroup = async (req, res) => {
   try {
-    console.log(req.body);
-    const learningGroup = await LearningGroup.create({
-      ...req.body,
-      avatar: req.files["avatar"][0].filename,
-      coverPhoto: req.files["coverPhoto"][0].filename,
-    });
+    const data = req.body
+
+    if(req.files.avatar){
+      data.avatar = req.files.avatar[0].filename
+    }
+     if (req.files.coverPhoto) {
+       data.coverPhoto = req.files.coverPhoto[0].filename;
+     }
+    const learningGroup = await LearningGroup.create(data);
 
     res.status(201).json({ learningGroup });
   } catch (error) {
@@ -39,10 +42,18 @@ const getLearningGroup = async (req, res) => {
 
 const updateLearningGroup = async (req, res) => {
   try {
+    const data = req.body;
+
+    if (req.files.avatar) {
+      data.avatar = req.files.avatar[0].filename;
+    }
+    if (req.files.coverPhoto) {
+      data.coverPhoto = req.files.coverPhoto[0].filename;
+    }
     const learningGroupId = req.params.id;
     const learningGroup = await LearningGroup.findOneAndUpdate(
       { _id: learningGroupId },
-      req.body,
+      data,
       { new: true, runValidators: true }
     );
     if (!learningGroup) {

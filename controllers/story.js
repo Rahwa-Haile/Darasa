@@ -49,7 +49,7 @@ const updateStory = async (req, res) => {
     const story = await Story.findOneAndUpdate({ _id: storyId }, {...req.body, story:storyList}, {
       new: true,
       runValidators: true,
-      overwrite: true,
+     
     });
     if (!story) {
       res.status(404).json({ msg: "story not found" });
