@@ -77,9 +77,11 @@ const courseSchema = new mongoose.Schema(
     },
     courseImage: {
       type: String,
+      required: true
     },
     promoVideo: {
       type: String,
+      required: true
     },
     createdBy: {
       type: mongoose.Types.ObjectId,

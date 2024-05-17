@@ -3,6 +3,7 @@ const app = express();
 require("dotenv").config();
 const connectDB = require("./db/connectDB");
 const authRouter = require("./routes/auth");
+const userDataRouter = require("./routes/userData")
 const courseRouter = require("./routes/course");
 const learningGroupRouter = require("./routes/learningGroup");
 const storyRouter = require("./routes/story");
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(
   "/api/v1/students",
   courseRouter,
+  userDataRouter,
   bookmarkRouter,
   cartRouter,
   authRouter,

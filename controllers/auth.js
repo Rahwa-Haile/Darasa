@@ -1,10 +1,8 @@
 const User = require("../model/user");
-const UserData = require("../model/userData")
 const jwt = require("jsonwebtoken");
 const bcryptjs = require("bcryptjs");
 const {BadRequestError, UnauthenticatedError, NotFoundError} = require('../errors')
-const {readFileSync} = require('fs')
-const path = require('path')
+
 
 const register = async (req, res) => {
   try {
@@ -53,16 +51,6 @@ const login = async (req, res) => {
   }
 };
 
-const userData = async (req, res)=>{
-  try{
-    console.log(req.body)
-    
-    const data = await UserData.create({...req.body, avatar: req.files['avatar'][0].filename, coverPhoto: req.files['coverPhoto'][0].filename})
-    res.status(201).json({data})
-  }catch(error){
-    console.log(error)
-  }
 
-}
 
-module.exports = { register, login, userData };
+module.exports = { register, login };
