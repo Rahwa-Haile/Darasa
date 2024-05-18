@@ -3,11 +3,14 @@ const UserData = require("../model/userData");
 const createUserData = async (req, res) => {
   try {
     const data = { ...req.body };
-    if (req.files["avatar"]) {
-      data.avatar = req.files["avatar"][0].filename;
+    if (req.files.avatar && req.files.avatar[0].mimetype.startsWith("image/")) {
+      data.avatar = req.files.avatar[0].filename;
     }
-    if (req.files["coverPhoto"]) {
-      data.coverPhoto = req.files["coverPhoto"][0].filename;
+    if (
+      req.files.coverPhoto &&
+      req.files.coverPhoto[0].mimetype.startsWith("image/")
+    ) {
+      data.coverPhoto = req.files.coverPhoto[0].filename;
     }
     const userData = await UserData.create(data);
     res.status(201).json({ userData });
@@ -40,12 +43,16 @@ const updateUserData = async (req, res) => {
     const userDataId = req.params.id;
     const data = { ...req.body };
 
-    if (req.files["avatar"]) {
-      data.avatar = req.files["avatar"][0].filename;
+    if (req.files.avatar && req.files.avatar[0].mimetype.startsWith("image/")) {
+      data.avatar = req.files.avatar[0].filename;
     }
-    if (req.files["coverPhoto"]) {
-      data.coverPhoto = req.files["coverPhoto"][0].filename;
+    if (
+      req.files.coverPhoto &&
+      req.files.coverPhoto[0].mimetype.startsWith("image/")
+    ) {
+      data.coverPhoto = req.files.coverPhoto[0].filename;
     }
+
     const userData = await UserData.findOneAndUpdate(
       { _id: userDataId },
       data,

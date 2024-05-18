@@ -4,12 +4,16 @@ const createLearningGroup = async (req, res) => {
   try {
     const data = req.body;
 
-    if (req.files.avatar) {
+    if (req.files.avatar && req.files.avatar[0].mimetype.startsWith("image/")) {
       data.avatar = req.files.avatar[0].filename;
     }
-    if (req.files.coverPhoto) {
+    if (
+      req.files.coverPhoto &&
+      req.files.coverPhoto[0].mimetype.startsWith("image/")
+    ) {
       data.coverPhoto = req.files.coverPhoto[0].filename;
     }
+
     const learningGroup = await LearningGroup.create(data);
 
     res.status(201).json({ learningGroup });
@@ -42,15 +46,23 @@ const getLearningGroup = async (req, res) => {
 
 const updateLearningGroup = async (req, res) => {
   try {
+    const learningGroupId = req.params.id;
     const data = req.body;
 
-    if (req.files.avatar) {
+    if (
+      req.files.avatar &&
+      req.files.avatar[0].mimetype.startsWith("image/")
+    ) {
       data.avatar = req.files.avatar[0].filename;
     }
-    if (req.files.coverPhoto) {
+    if (
+      req.files.coverPhoto &&
+      req.files.coverPhoto[0].mimetype.startsWith("image/")
+    ) {
       data.coverPhoto = req.files.coverPhoto[0].filename;
     }
-    const learningGroupId = req.params.id;
+    console.log(data);
+
     const learningGroup = await LearningGroup.findOneAndUpdate(
       { _id: learningGroupId },
       data,

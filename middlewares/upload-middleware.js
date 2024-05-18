@@ -13,25 +13,22 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   fileFilter: (req, file, cb) => {
+    
     if (
       file.mimetype === "image/png" ||
       file.mimetype === "image/jpg" ||
       file.mimetype === "image/pjpeg" ||
-      file.mimetype === "image/jpeg" ||
+      file.mimetype === "image/jpeg"||
       file.mimetype.startsWith("video/")
     ) {
       cb(null, true);
-    } else {
+    }else {
       console.log("Only png and jpg file foramts are supported");
       cb(null, false);
     }
   },
   limits: {
-    fileSize: (req, file, cb) => {
-      const isVideo = file.mimetype.Startswith("/video");
-      const fileSizeLimit = isVideo ? 1024 * 1024 * 50 : 1024 * 1024 * 2;
-      cb(null, fileSizeLimit);
-    },
+    fileSize: 15 * 1024 * 1024,
   },
 });
 

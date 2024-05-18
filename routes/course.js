@@ -15,6 +15,7 @@ router.post(
     { name: "courseImage", maxCount: 1 },
     { name: "promoVideo", maxCount: 1 },
   ]),
+
   createCourse
 );
 router.get("/course", getAllCourses);
