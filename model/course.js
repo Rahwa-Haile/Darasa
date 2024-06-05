@@ -4,13 +4,13 @@ const User = require("./user");
 const courseSchema = new mongoose.Schema(
   {
     courseTitle: {
-      type: String,
+      type: String, 
       required: [true, "Please provide course title"],
     },
     courseSubtitle: {
       type: String,
       required: [true, "Please provide course sub-title"],
-    },
+    },                                                    
     courseDescription: {
       type: String,
       required: [true, "Please provide course description"],
