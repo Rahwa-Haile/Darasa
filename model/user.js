@@ -23,11 +23,11 @@ const UserSchema = new mongoose.Schema({
     minimumlength: 3,
   },
   userType: {
-    type: String,
+    type: [String],
     required: [true, 'Please provide userType'],
     enum: ['Instructor', 'Student'],
-    default: 'Student'  
-  }
+    default: ['Student'] 
+}
 }, {timestamps: true});
 
 module.exports = mongoose.model("User", UserSchema);

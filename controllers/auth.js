@@ -30,7 +30,7 @@ const register = async (req, res) => {
 };
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, userMode } = req.body;
 
     if (!password && !email) {
       throw new BadRequestError("Please provide email and password");
@@ -45,8 +45,12 @@ const login = async (req, res) => {
     if (!isMatch) {
       res.status(404).json({ msg: "Incorrect password" });
     }
-
-    res.status(201).json({ user });
+    const token = await jwt.sign(
+      { name: user.name, id: user._id, userMode },
+      process.env.JWT_SECRET,
+      { expiresIn: "30d" }
+    );
+    res.status(201).json({ user, token });
   } catch (error) {
     console.log(error);
   }

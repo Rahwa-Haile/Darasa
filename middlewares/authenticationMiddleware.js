@@ -1,22 +1,36 @@
 const jwt = require("jsonwebtoken");
+const User = require("../model/user");
 
-const authenticationMiddleware = async (req, res, next) => {
-  try {
-    const authHeader = req.headers.authorization;
+const authenticationMiddleware = (userType) => {
+  return async (req, res, next) => {
+    try {
+      const authHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      res.status(401).json({ msg: "bad request" });
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        res.status(401).json({ msg: "bad request" });
+      }
+
+      const token = authHeader.split(" ")[1];
+
+      const { name, id, userMode } = await jwt.verify(
+        token,
+        process.env.JWT_SECRET
+      );
+      if (userType) {
+        
+        const user = await User.findById(id);
+        const isValidUserMode = userType === userMode;
+        if (!user.userType.includes(userType) || !isValidUserMode) {
+          res.status(401).json({ msg: "Invalid user type or mode" });
+        }
+      }
+      
+      req.user = { name, id, userMode };
+      next();
+    } catch (error) {
+      console.error(error);
     }
-
-    const token = authHeader.split(" ")[1];
-
-    const { name, id } = await jwt.verify(token, process.env.JWT_SECRET);
-
-    req.user = { name, id };
-    next();
-  } catch (error) {
-    console.error(error);
-  }
+  };
 };
 
 module.exports = authenticationMiddleware;

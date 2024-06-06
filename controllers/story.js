@@ -2,7 +2,8 @@ const Story = require("../model/story");
 
 const createStory = async (req, res) => {
   try {
-    
+    console.log(req.user)
+    const createdBy = req.user.id
     let storyList = [];
     if (req.files) {
       storyList = req.files.map((story) => {
@@ -10,8 +11,7 @@ const createStory = async (req, res) => {
       });
     }
 
-    
-    const story = await Story.create({ ...req.body, story: storyList });
+    const story = await Story.create({ story: storyList, createdBy});
     res.status(201).json({ story });
   } catch (error) {
     console.log(error);
