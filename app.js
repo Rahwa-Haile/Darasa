@@ -12,6 +12,7 @@ const commentRouter = require("./routes/comment");
 const followRouter = require("./routes/follow");
 const bookmarkRouter = require("./routes/bookmark");
 const cartRouter = require("./routes/cart");
+const userRouter = require("./routes/user")
 
 app.use(express.urlencoded({ extended: false })); //This parses the data and add it to the body.
 
@@ -28,7 +29,8 @@ app.use(
   commentRouter,
   learningGroupRouter,
   notificationRouter,
-  storyRouter
+  storyRouter, 
+  userRouter
 );
 
 const start = async () => {
