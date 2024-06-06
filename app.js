@@ -13,10 +13,12 @@ const followRouter = require("./routes/follow");
 const bookmarkRouter = require("./routes/bookmark");
 const cartRouter = require("./routes/cart");
 const userRouter = require("./routes/user")
+const authenticationMiddleware = require('./middlewares/authenticationMiddleware')
 
 app.use(express.urlencoded({ extended: false })); //This parses the data and add it to the body.
 
 app.use(express.json());
+
 
 app.use(
   "/api/v1/students",

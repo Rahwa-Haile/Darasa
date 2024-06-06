@@ -17,14 +17,14 @@ const authenticationMiddleware = (userType) => {
         process.env.JWT_SECRET
       );
       if (userType) {
-        
+        console.log("there is user type")
         const user = await User.findById(id);
         const isValidUserMode = userType === userMode;
         if (!user.userType.includes(userType) || !isValidUserMode) {
           res.status(401).json({ msg: "Invalid user type or mode" });
         }
       }
-      
+      console.log('there is no user type')
       req.user = { name, id, userMode };
       next();
     } catch (error) {
