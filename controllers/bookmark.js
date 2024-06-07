@@ -3,7 +3,7 @@ const Bookmark = require("../model/bookmark");
 const addToBookmark = async (req, res) => {
   try {
     const courseId = req.params.id;
-    const studentId = req.body.bookmarkedBy;
+    const studentId = req.user.id
     let bookmark = await Bookmark.findOne({
       bookmarkedBy: studentId,
       courseId,
@@ -19,7 +19,7 @@ const addToBookmark = async (req, res) => {
 };
 const viewBookmark = async (req, res) => {
   try {
-    const studentId = req.body.bookmarkedBy;
+    const studentId = req.user.id;
     const bookmark = await Bookmark.find({ bookmarkedBy: studentId }).populate(
       "courseId"
     );
