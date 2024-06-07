@@ -1,9 +1,15 @@
 const Bookmark = require("../model/bookmark");
+const Course = require("../model/course")
 
 const addToBookmark = async (req, res) => {
   try {
     const courseId = req.params.id;
     const studentId = req.user.id
+ 
+    const course = await Course.findById({ _id: courseId });
+    if (!course) {
+      res.status(404).json({ msg: "Course doesn't exist" });
+    }
     let bookmark = await Bookmark.findOne({
       bookmarkedBy: studentId,
       courseId,
@@ -31,7 +37,12 @@ const viewBookmark = async (req, res) => {
 const removeFromBookmark = async (req, res) => {
   try {
     const courseId = req.params.id;
-    const studentId = req.body.bookmarkedBy;
+  
+    const course = await Course.findById({ _id: courseId });
+    if (!course) {
+      res.status(404).json({ msg: "Course doesn't exist" });
+    }
+    const studentId = req.user.id
     let bookmark = await Bookmark.findOneAndDelete({
       bookmarkedBy: studentId,
       courseId,

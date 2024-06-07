@@ -1,9 +1,15 @@
 const Cart = require("../model/cart");
+const Course = require("../model/course")
 
 const addToCart = async (req, res) => {
   try {
-    const studentId = req.body.addedToCartBy;
+    console.log(req.user)
+    const studentId = req.user.id;
     const courseId = req.params.id;
+    const course = await Course.findById({_id: courseId})
+    if(!course){
+      res.status(404).json({msg: "Course doesn't exist"})
+    }
     let cart = await Cart.findOne({ addedToCartBy: studentId });
     if (!cart) {
       cart = await Cart.create({ addedToCartBy: studentId, courseIdList: [] });
@@ -32,8 +38,14 @@ const viewCart = async (req, res) => {
 
 const removeFromCart = async (req, res) => {
   try {
+    console.log(req.user)
     const courseId = req.params.id;
-    const studentId  = req.body.addedToCartBy
+
+    const studentId  = req.user.id
+     const course = await Course.findById({ _id: courseId });
+     if (!course) {
+       res.status(404).json({ msg: "Course doesn't exist" });
+     }
     let cart = await Cart.findOne({ addedToCartBy: studentId });
     if (!cart) {
       res.status(404).json({ msg: "no cart" });
