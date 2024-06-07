@@ -2,6 +2,7 @@ const Course = require("../model/course");
 
 const createCourse = async (req, res) => {
   try {
+    const createdBy = req.user.id
     const promoVideo = req.files.promoVideo[0];
     const courseImage = req.files.courseImage[0];
 
@@ -14,6 +15,7 @@ const createCourse = async (req, res) => {
 
     const course = await Course.create({
       ...req.body,
+      createdBy,
       courseImage: courseImage.filename,
       promoVideo: promoVideo.filename,
     });
@@ -45,7 +47,6 @@ const getCourse = async (req, res) => {
 };
 const updateCourse = async (req, res) => {
   try {
-    
     const courseId = req.params.id;
     const updateData = { ...req.body };
     console.log(req.files);
@@ -83,6 +84,7 @@ const updateCourse = async (req, res) => {
 };
 const deleteCourse = async (req, res) => {
   try {
+    console.log(req.user)
     const courseId = req.params.id;
     const course = await Course.findOneAndDelete({ _id: courseId });
     if (!course) {
