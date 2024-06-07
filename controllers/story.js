@@ -2,7 +2,6 @@ const Story = require("../model/story");
 
 const createStory = async (req, res) => {
   try {
-    console.log(req.user)
     const createdBy = req.user.id
     let storyList = [];
     if (req.files) {
@@ -39,6 +38,7 @@ const getStory = async (req, res) => {
 };
 const updateStory = async (req, res) => {
   try {
+    console.log(req.user);
     const storyId = req.params.id;
     let storyList = []
     if(req.files){
