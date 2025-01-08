@@ -44,4 +44,4 @@ The project is a work in progress. Current features and improvements include:
   - Resource sharing among learning group members.
   - Design a logo.
 #### **Frontend Demo Video**
-<video src="./media/projectDemo.mp4" controls width="700"></video>
+<video src="./media/instructorDashboard.mp4" controls width="700"></video>
