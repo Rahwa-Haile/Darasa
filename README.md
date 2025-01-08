@@ -43,3 +43,5 @@ The project is a work in progress. Current features and improvements include:
   - Add a rating system for courses and instructors.
   - Resource sharing among learning group members.
   - Design a logo.
+#### **Frontend Demo Video**
+<video src="media/projectDemo.mp4" controls width="700"></video>
