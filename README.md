@@ -17,17 +17,23 @@ This project is focused on creating a user-friendly platform to foster peer-to-p
 
 This project also utilizes external APIs such as **Agora** and **Algolia** to facilitate in-app video conferencing and search functionality.
 
+
+## Key Features and Functionality
 - Interactive dashboards tailored for students and instructors.
 - Course management, including enrolling in courses and adding them to the cart.
 - Follow instructors and view their updates through stories.
 - Join or create learning groups based on similar journeys.
 - Video conferencing powered by Agora for real-time classes.
 - Advanced search capabilities using Algolia for streamlined navigation.
+
+## Technologies Used
 - **Frontend**: React.js, Bootstrap
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB
+- **Authentication**: JWT (JSON Web Tokens)
 - **APIs**: Agora (video conferencing), Algolia (search functionality)
-- **Other Tools**: Git, GitHub
+- **Version Control**: Git, GitHub
+- **API Testing**: Postman 
 
 The project is a work in progress. Current features and improvements include:
 
