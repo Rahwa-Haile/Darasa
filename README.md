@@ -45,4 +45,18 @@ The project is a work in progress. Current features and improvements include:
   - Design a logo.
 #### **Frontend Demo Video**
 <!-- <video src="./media/instructorDashboard.gif" controls width="700"></video> -->
- ![Demo](media/instructorDashboard.gif)
+ <!-- ![Demo](media/instructorDashboard.gif) -->
+
+ ## Frontend Demo List
+
+### 1. Student Dashboard
+![Student Dashboard](media/studentdashboard.gif)
+
+### 2. Instructor Dashboard
+![Instructor Dashboard](media/instructorDashboard.gif)
+
+### 3. Course Details
+![Course Details](media/courseDetails.gif)
+
+### 4. Profile Page
+![Profile Page](media/ProfilePage.gif)
